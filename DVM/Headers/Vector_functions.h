@@ -1,0 +1,10 @@
+#ifndef DVM_VECTOR_FUNCTIONS_H
+#define DVM_VECTOR_FUNCTIONS_H
+
+namespace DVM
+{
+
+}
+
+#endif // !DVM_VECTOR_FUNCTIONS_H
+
