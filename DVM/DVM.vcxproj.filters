@@ -29,7 +29,7 @@
     <ClInclude Include="Headers\Math.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
-    <ClInclude Include="Headers\Vector_functions.h">
+    <ClInclude Include="Headers\Vector_Math.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
   </ItemGroup>

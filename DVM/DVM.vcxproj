@@ -145,7 +145,7 @@
     <ClInclude Include="Headers\Math.h" />
     <ClInclude Include="Headers\Utility.h" />
     <ClInclude Include="Headers\Vector.h" />
-    <ClInclude Include="Headers\Vector_functions.h" />
+    <ClInclude Include="Headers\Vector_Math.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
