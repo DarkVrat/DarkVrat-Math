@@ -1,7 +1,9 @@
 ﻿#include <iostream>
 
 #include "Headers/Vector.h"
+#include "Headers/Vector_Math.h"
 #include <map>
+#include <cmath>
 
 template<typename T, size_t N>
 void printVec(const DVM::VecTemplate<T, N>& vec)
@@ -13,8 +15,8 @@ void printVec(const DVM::VecTemplate<T, N>& vec)
 
 int main()
 {
-	DVM::VecTemplate<int, 3> vec1(1, 2, 3);
-	DVM::VecTemplate<int, 3> vec2(4, 5, 6);
-	DVM::VecTemplate<int, 3> vec3 = vec2 << vec1;
+	DVM::Vec3f vec1(1.f, 2.f, 3.f);
+	DVM::Vec3f vec2(3.f, 2.f, 1.f);
+	DVM::Vec3f vec3(DVM::Cross(vec1, vec2));
 	std::cout << vec3.Values.x << " " << vec3.Values.y << " " << vec3.Values.z;
 }

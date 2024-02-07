@@ -196,6 +196,113 @@ namespace DVM
 		return result;
 	}
 
+	template<typename T, size_t N>
+	inline VecTemplate<T, N> Exp(const VecTemplate<T, N>& vec) 
+	{
+		VecTemplate<T, N> result;
+		for (size_t i = 0; i < N; i++)
+			result[i] = Exp(vec[i]);
+		return result;
+	}
+
+	template<typename T, size_t N>
+	inline VecTemplate<T, N> Exp2(const VecTemplate<T, N>& vec) 
+	{
+		VecTemplate<T, N> result;
+		for (size_t i = 0; i < N; i++)
+			result[i] = Exp2(vec[i]);
+		return result;
+	}
+
+	template<typename T, size_t N>
+	inline VecTemplate<T, N> Inversesqrt(const VecTemplate<T, N>& vec) 
+	{
+		VecTemplate<T, N> result;
+		for (size_t i = 0; i < N; i++)
+			result[i] = Inversesqrt(vec[i]);
+		return result;
+	}
+
+	template<typename T, size_t N>
+	inline VecTemplate<T, N> Log(const VecTemplate<T, N>& vec) 
+	{
+		VecTemplate<T, N> result;
+		for (size_t i = 0; i < N; i++)
+			result[i] = Log(vec[i]);
+		return result;
+	}
+
+	template<typename T, size_t N>
+	inline VecTemplate<T, N> Log2(const VecTemplate<T, N>& vec) 
+	{
+		VecTemplate<T, N> result;
+		for (size_t i = 0; i < N; i++)
+			result[i] = Log2(vec[i]);
+		return result;
+	}
+
+	template<typename T, size_t N>
+	inline VecTemplate<T, N> Pow(const VecTemplate<T, N>& vecbase, T exp)
+	{
+		VecTemplate<T, N> result;
+		for (size_t i = 0; i < N; i++)
+			result[i] = Pow(vecbase[i], exp);
+		return result;
+	}
+
+	template<typename T, size_t N>
+	inline VecTemplate<T, N> Pow(const VecTemplate<T, N>& vecbase, const VecTemplate<T, N>& vecexp) 
+	{
+		VecTemplate<T, N> result;
+		for (size_t i = 0; i < N; i++)
+			result[i] = Pow(vecbase[i], vecexp[i]);
+		return result;
+	}
+
+	template<typename T, size_t N>
+	inline VecTemplate<T, N> Sqrt(const VecTemplate<T, N>& vec) 
+	{
+		VecTemplate<T, N> result;
+		for (size_t i = 0; i < N; i++)
+			result[i] = Sqrt(vec[i]);
+		return result;
+	}
+
+	template<typename T, size_t N>
+	inline T Length(const VecTemplate<T, N>& vec)
+	{
+		return vec.length();
+	}
+
+	template<typename T, size_t N>
+	inline VecTemplate<T, N> Normalize(const VecTemplate<T, N>& vec)
+	{
+		floatingPoint_t<T> length = vec.length();
+
+		if (length < getEpsilon<T>()) return VecTemplate<T, N>();
+
+		VecTemplate<T, N> result;
+		for (size_t i = 0; i < N; i++)
+			result[i] = vec[i]/length;
+
+		return result;
+	}
+
+	template<typename T, size_t N>
+	inline T Distance(const VecTemplate<T, N>& p1, const VecTemplate<T, N>& p2)
+	{
+		return Length(p1-p2);
+	}
+
+	template<typename T>
+	inline VecTemplate<T, 3> Cross(const VecTemplate<T, 3>& vec1, const VecTemplate<T, 3>& vec2)
+	{
+		return VecTemplate<T, 3>(
+			vec1.Values.y * vec2.Values.z - vec1.Values.z * vec2.Values.y,
+			vec1.Values.z * vec2.Values.x - vec1.Values.x * vec2.Values.z,
+			vec1.Values.x * vec2.Values.y - vec1.Values.y * vec2.Values.x
+			);
+	}
 }
 
 #endif // !DVM_VECTOR_FUNCTIONS_H

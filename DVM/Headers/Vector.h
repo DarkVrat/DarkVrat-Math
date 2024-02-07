@@ -144,13 +144,13 @@ namespace DVM
 		inline			T& operator[](size_t index)			{ return data[index]; }
 		inline const	T& operator[](size_t index) const	{ return data[index]; }
 
-		inline T length();
+		inline floatingPoint_t<T> length() const;
 	};
 
 	template<typename T, size_t N>
-	inline T VecTemplate<T, N>::length()
+	inline floatingPoint_t<T> VecTemplate<T, N>::length() const
 	{
-		T sum_of_squares = 0;
+		floatingPoint_t<T> sum_of_squares = 0;
 		for (size_t i = 0; i < N; i++)
 			sum_of_squares += data[i] * data[i];
 		return Sqrt(sum_of_squares);
