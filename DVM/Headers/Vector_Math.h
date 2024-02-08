@@ -294,14 +294,55 @@ namespace DVM
 		return Length(p1-p2);
 	}
 
-	template<typename T>
-	inline VecTemplate<T, 3> Cross(const VecTemplate<T, 3>& vec1, const VecTemplate<T, 3>& vec2)
+	template<typename T, size_t N>
+	inline T Dot(const VecTemplate<T, N>& x, const VecTemplate<T, N>& y)
 	{
-		return VecTemplate<T, 3>(
-			vec1.Values.y * vec2.Values.z - vec1.Values.z * vec2.Values.y,
-			vec1.Values.z * vec2.Values.x - vec1.Values.x * vec2.Values.z,
-			vec1.Values.x * vec2.Values.y - vec1.Values.y * vec2.Values.x
-			);
+		T result = 0;
+		for (size_t i = 0; i < N; i++)
+			result += x[i] * y[i];
+		return result;
+	}
+
+	template<typename T, size_t N>
+	inline VecTemplate<T, N> Cross(const VecTemplate<T, N>& vec1, const VecTemplate<T, N>& vec2)
+	{
+		VecTemplate<T, N> result;
+
+		for (size_t i = 0; i < N; ++i) {
+			size_t prev = (i + N - 1) % N;
+			size_t next = (i + 1) % N;
+
+			result.Values[i] = vec1.Values[prev] * vec2.Values[next] - vec1.Values[next] * vec2.Values[prev];
+		}
+
+		return result;
+	}
+
+	template<typename T, size_t N>
+	inline VecTemplate<T, N> FaceForward(const VecTemplate<T, N>& vecN, const VecTemplate<T, N>& I, const VecTemplate<T, N>& vecNref)
+	{
+		if (Dot(vecNref, I) < template_cast<T>(0))
+			return vecN;
+		else
+			return vecN * template_cast<T>(-1);
+	}
+
+	template<typename T, size_t N>
+	inline VecTemplate<T, N> Reflect(const VecTemplate<T, N>& I, const VecTemplate<T, N>& vecN)
+	{
+		return I - (vecN * (template_cast<T>(2) * Dot(I, vecN)));
+	}
+
+	template<typename T, size_t N>
+	inline VecTemplate<T, N> Refract(const VecTemplate<T, N>& I, const VecTemplate<T, N>& vecN, T eta)
+	{
+		T dotProduct = Dot(I, vecN);
+		T k = template_cast<T>(1) - eta * eta * (template_cast<T>(1) - dotProduct * dotProduct);
+
+		if (k < template_cast<T>(0)) return VecTemplate<T, N>();
+
+		VecTemplate<T, N> refractedVector = eta * I - (eta * dotProduct + Sqrt(k)) * vecN;
+		return refractedVector;
 	}
 }
 

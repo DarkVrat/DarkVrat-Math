@@ -192,7 +192,6 @@ namespace DVM
 	using Vec4usi	= VecTemplate<unsigned short int, 4>;
 	using Vec4ulli	= VecTemplate<unsigned long long int, 4>;
 
-	//Composite statements of the VecTemplate class
 	template<typename T, size_t N>
 	inline VecTemplate<T, N>& VecTemplate<T, N>::operator++()
 	{
@@ -225,6 +224,7 @@ namespace DVM
 		return result;
 	}
 
+	//Composite statements of the VecTemplate class
 	template<typename T, size_t N>
 	inline VecTemplate<T, N>& VecTemplate<T, N>::operator%=(T value)
 	{
@@ -402,6 +402,12 @@ namespace DVM
 	VecTemplate<T, N> operator*(VecTemplate<T, N> lhs, T rhs) {
 		lhs *= rhs;
 		return lhs;
+	}
+
+	template <typename T, size_t N>
+	VecTemplate<T, N> operator*(T lhs, VecTemplate<T, N> rhs) {
+		rhs *= lhs;
+		return rhs;
 	}
 
 	template <typename T, size_t N>

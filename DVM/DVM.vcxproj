@@ -143,6 +143,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Headers\Math.h" />
+    <ClInclude Include="Headers\Matrix.h" />
+    <ClInclude Include="Headers\Matrix_Math.h" />
     <ClInclude Include="Headers\Utility.h" />
     <ClInclude Include="Headers\Vector.h" />
     <ClInclude Include="Headers\Vector_Math.h" />
