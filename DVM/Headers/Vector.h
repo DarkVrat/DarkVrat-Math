@@ -34,6 +34,20 @@ namespace DVM
 				data[i] = T{};
 		}
 
+		VecTemplate(T value)
+		{
+			for (size_t i = 0; i < N; ++i)
+				data[i] = value;
+		}
+
+		VecTemplate(T value, size_t index)
+		{
+			static_assert(index < N, "Index out of range");
+
+			for (size_t i = 0; i < N; ++i)
+				data[i] = (i == index) ? value : T{};
+		}
+
 		VecTemplate(T initValues[N])
 		{
 			for (size_t i = 0; i < N; ++i)
@@ -55,6 +69,29 @@ namespace DVM
 		{
 			for (size_t i = 0; i < N; ++i)
 				data[i] = right[i];
+		}
+
+		template<typename U>
+		VecTemplate(U value)
+		{
+			for (size_t i = 0; i < N; ++i)
+				data[i] = static_cast<T>(value);
+		}
+
+		template<typename U>
+		VecTemplate(U value, size_t index)
+		{
+			static_assert(index < N, "Index out of range");
+
+			for (size_t i = 0; i < N; ++i)
+				data[i] = (i == index) ? static_cast<T>(value) : T{};
+		}
+
+		template<typename U>
+		VecTemplate(U initValues[N])
+		{
+			for (size_t i = 0; i < N; ++i)
+				data[i] = static_cast<T>(initValues[i]);
 		}
 
 		template<typename U, size_t M>
