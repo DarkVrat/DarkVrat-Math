@@ -218,7 +218,19 @@ namespace DVM
         constexpr T E = getE<T>();
 
         if (x <= 0) return template_cast<T>(-1);
-        if (x < E)  return Log(x * E) - template_cast<T>(1);
+
+        if (x < E)
+        {
+            T res = template_cast<T>(0);
+
+            while (x < E) {
+                x *= E;
+                res += template_cast<T>(1);
+            }
+
+            return Log(x) - res;
+        }
+
         if (x > E * E)
         {
             T res = template_cast<T>(0);
