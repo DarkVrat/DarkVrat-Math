@@ -59,7 +59,7 @@ namespace DVM
 		{
 			static_assert(sizeof...(Args) == N, "Number of arguments must match vector size");
 
-			T initValues[] = { args... };
+			T initValues[] = { static_cast<T>(args)... };
 
 			for (size_t i = 0; i < N; ++i)
 				data[i] = initValues[i];
@@ -111,7 +111,7 @@ namespace DVM
 		{
 			static_assert(sizeof...(Args) + M == N, "Number of arguments must match vector size");
 
-			T initValues[] = { args... };
+			T initValues[] = { static_cast<T>(args)... };
 
 			for (size_t i = 0; i < M; ++i)
 				data[i] = static_cast<T>(right[i]);

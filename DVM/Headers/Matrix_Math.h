@@ -8,8 +8,14 @@
 namespace DVM
 {
 
-	template<typename T> inline T Determinant(const MatTemplate<T, 1, 1>& mat) { return mat[0][0]; }
-	template<typename T> inline T Determinant(const MatTemplate<T, 2, 2>& mat) { return mat[0][0] * mat[1][1] - mat[1][0] * mat[0][1]; }
+	template<typename T> constexpr T Determinant(const MatTemplate<T, 1, 1>& mat) { return mat[0][0]; }
+	template<typename T> constexpr T Determinant(const MatTemplate<T, 2, 2>& mat) { return mat[0][0] * mat[1][1] - mat[1][0] * mat[0][1]; }
+	template<typename T> constexpr T Determinant(const MatTemplate<T, 3, 3>& mat) 
+	{ 
+		return	mat[0][0] * (mat[1][1] * mat[2][2] - mat[1][2] * mat[2][1]) -
+				mat[0][1] * (mat[1][0] * mat[2][2] - mat[1][2] * mat[2][0]) +
+				mat[0][2] * (mat[1][0] * mat[2][1] - mat[1][1] * mat[2][0]);
+	}
 	template<typename T, size_t C, size_t R>
 	constexpr T Determinant(const MatTemplate<T, C, R>& mat)
 	{

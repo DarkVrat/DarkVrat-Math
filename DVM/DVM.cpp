@@ -19,9 +19,13 @@ void printMat(const DVM::MatTemplate<T, C, R>& mat)
 
 int main()
 {
-	DVM::MatTemplate<int, 3, 2> matX = { 3,4,-2,5,1,2 };
-	DVM::MatTemplate<int, 2, 3> matY = { 6,2,4,-1,3,-5 };
+	DVM::MatTemplate<float, 5, 5> matX = {	 1,  4,  2,  3,  4, 
+											 6,  8,  1, -5, -3, 
+											 1, -4,  2, -6,  4, 
+											-5,  3,  0,  1, -5, 
+											 2, -6,  3,  9, -6 };
+	
 
-	printMat(DVM::matrixMultiplication(matX, matY));
-	//std::cout << DVM::Determinant(mat);
+	printMat(matX);
+	std::cout << DVM::Determinant(matX);
 }

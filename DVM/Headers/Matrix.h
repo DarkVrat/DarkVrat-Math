@@ -45,7 +45,7 @@ namespace DVM
 		{
 			static_assert(sizeof...(Args) == C * R, "Number of arguments must match matrix size");
 
-			T initValues[] = { args... };
+			T initValues[] = { static_cast<T>(args)... };
 
 			for (size_t i = 0; i < C * R; ++i)
 				data[i] = initValues[i];
