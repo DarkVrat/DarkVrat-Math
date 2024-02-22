@@ -120,6 +120,22 @@ namespace DVM
 
 
 	}
+
+	template<typename T, size_t C, size_t R>
+	constexpr VecTemplate<T, C> linearTransformation(const MatTemplate<T, C, R>& mat, const VecTemplate<T, C>& vec)
+	{
+		VecTemplate<T, C> result;
+
+		for (size_t i = 0; i < C; ++i) {
+			T sum = 0;
+			for (size_t j = 0; j < R; ++j) {
+				sum += mat[j][i] * vec[j];
+			}
+			result[i] = sum;
+		}
+
+		return result;
+	}
 }
 
 #endif // !DVM_MATRIX_MATH_H
